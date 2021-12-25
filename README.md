@@ -12,6 +12,9 @@
 - 使用xray回落模式，兼容多种协议(trojan, vless, vmess)
 - 最终回落使用nginx，配置伪装站
 
+### install_multi.sh
+- xray安装采用指定json目录的形式，功能和install_whatever.sh完全一样
+
 ## install.sh使用
 ```bash
 bash <(curl -Ls https://raw.githubusercontent.com/snddman/xray-sh/main/install.sh)
@@ -21,6 +24,12 @@ bash <(curl -Ls https://raw.githubusercontent.com/snddman/xray-sh/main/install.s
 ```bash
 bash <(curl -Ls https://raw.githubusercontent.com/snddman/xray-sh/main/install_whatever.sh)
 ```
+
+## install_multi.sh使用
+```bash
+bash <(curl -Ls https://raw.githubusercontent.com/snddman/xray-sh/main/install_multi.sh)
+```
+
 ## client使用
 - OpenWrt
   - [PassWall](https://github.com/xiaorouji/openwrt-passwall)
