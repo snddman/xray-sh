@@ -528,7 +528,7 @@ function start_menu(){
     cat /usr/local/etc/xray/myconfig.json
     ;;
     5)
-    cd /usr/share/nginx/html/ && rm -f ./*
+    cd /usr/share/nginx/html/ && rm -rf ./*
     wget https://github.com/snddman/xray-sh/raw/main/fakesite.zip
     unzip -o fakesite.zip
     ;;
