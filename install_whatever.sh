@@ -507,6 +507,7 @@ function start_menu(){
     green " 2. 更新 xray"
     red " 3. 删除 xray"
     green " 4. 查看配置参数"
+    green " 5. 修复nginx web files"
     yellow " 0. Exit"
     echo
     read -p "输入数字:" num
@@ -525,6 +526,11 @@ function start_menu(){
     ;;
     4)
     cat /usr/local/etc/xray/myconfig.json
+    ;;
+    5)
+    cd /usr/share/nginx/html/ && rm -f ./*
+    wget https://github.com/snddman/xray-sh/raw/main/fakesite.zip
+    unzip -o fakesite.zip
     ;;
     0)
     exit 1
