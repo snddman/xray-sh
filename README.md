@@ -20,11 +20,14 @@
 bash <(curl -Ls https://raw.githubusercontent.com/snddman/xray-sh/main/install.sh)
 ```
 
-## install_whatever.sh使用
+## install_whatever.sh使用（稳定版本）
 ```bash
 bash <(curl -Ls https://raw.githubusercontent.com/snddman/xray-sh/main/install_whatever.sh)
 ```
 
+## install_whatever.sh使用（开发版本）
+```bash
+bash <(curl -Ls https://raw.githubusercontent.com/snddman/xray-sh/develop/install_whatever.sh)
 ## install_multi.sh使用
 ```bash
 bash <(curl -Ls https://raw.githubusercontent.com/snddman/xray-sh/main/install_multi.sh)
