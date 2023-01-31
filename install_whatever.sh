@@ -185,7 +185,7 @@ EOF
 
     ~/.acme.sh/acme.sh  --set-default-ca  --server  letsencrypt
     ~/.acme.sh/acme.sh  --issue  -d $your_domain  --webroot /usr/share/nginx/html/
-    if test -s /root/.acme.sh/$your_domain/fullchain.cer; then
+    if test -s /root/.acme.sh/${your_domain}_ecc/fullchain.cer; then
         green "$(date +"%Y-%m-%d %H:%M:%S") - 申请https证书成功."
     else
         cert_failed="1"
