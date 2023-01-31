@@ -185,7 +185,7 @@ EOF
 
     ~/.acme.sh/acme.sh  --set-default-ca  --server  letsencrypt
     ~/.acme.sh/acme.sh  --issue  -d $your_domain  --webroot /usr/share/nginx/html/
-    if test -s /root/.acme.sh/$your_domain/fullchain.cer; then
+    if test -s /root/.acme.sh/${your_domain}_ecc/fullchain.cer; then
         green "$(date +"%Y-%m-%d %H:%M:%S") - 申请https证书成功."
     else
         cert_failed="1"
@@ -453,8 +453,8 @@ check_domain(){
     $systemPackage install -y wget curl unzip
     blue "Eenter your domain:"
     read your_domain
-    real_addr=`ping ${your_domain} -c 1 | sed '1{s/[^(]*(//;s/).*//;q}'`
-    local_addr=`curl ipv4.icanhazip.com`
+    real_addr=`ping ${your_domain} -c 1 | sed '1{s/[^(]*(//;s/[^(]*(//;s/).*//;q}'`
+    local_addr=`curl icanhazip.com`
     if [ $real_addr == $local_addr ] ; then
         green "域名解析地址与VPS IP地址匹配."
         install_nginx
