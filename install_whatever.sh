@@ -215,7 +215,7 @@ cat > /usr/local/etc/xray/config.json<<-EOF
                 "clients": [
                     {
                         "id": "$v2uuid",
-                        "flow": "xtls-rprx-direct",
+                        "flow": "xtls-rprx-vision",
                         "level": 0,
                         "email": "love@example.com"
                     }
@@ -245,8 +245,8 @@ cat > /usr/local/etc/xray/config.json<<-EOF
             },
             "streamSettings": {
                 "network": "tcp",
-                "security": "xtls",
-                "xtlsSettings": {
+                "security": "tls",
+                "tlsSettings": {
                     "alpn": [
                         "http/1.1"
                     ],
