@@ -163,9 +163,17 @@ cat > /etc/nginx/conf.d/default.conf<<-EOF
 server {
     listen       0.0.0.0:80;
     server_name  $your_domain;
-    root /usr/share/nginx/html/;
-    index index.php index.html;
+    #root /usr/share/nginx/html/;
+    #index index.php index.html;
     #rewrite ^(.*)$  https://\$host\$1 permanent;
+    location /download {
+        proxy_redirect off;
+        proxy_pass http://127.0.0.1:11234;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $http_host;
+    }
 }
 EOF
     green "$(date +"%Y-%m-%d %H:%M:%S") ==== 检测nginx配置文件"
@@ -358,6 +366,26 @@ cat > /usr/local/etc/xray/config.json<<-EOF
                     "path": "/vmessws"
                 }
             }
+        },
+        {
+            "listen": "127.0.0.1",
+            "port": 11234,
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "$v2uuid",
+                        "level": 0,
+                        "email": "love@example.com"
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "ws",
+                "wsSettings": {
+                "path": "/download"
+                }
+            },
         }
     ],
     "outbounds": [
