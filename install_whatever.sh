@@ -163,8 +163,8 @@ cat > /etc/nginx/conf.d/default.conf<<-EOF
 server {
     listen       0.0.0.0:80;
     server_name  $your_domain;
-    #root /usr/share/nginx/html/;
-    #index index.php index.html;
+    root /usr/share/nginx/html/;
+    index index.php index.html;
     #rewrite ^(.*)$  https://\$host\$1 permanent;
     location /download {
         proxy_redirect off;
