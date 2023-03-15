@@ -166,14 +166,14 @@ server {
     root /usr/share/nginx/html/;
     index index.php index.html;
     #rewrite ^(.*)$  https://\$host\$1 permanent;
-    #location /download {
-    #    proxy_redirect off;
-    #    proxy_pass http://127.0.0.1:11234;
-    #    proxy_http_version 1.1;
-    #    proxy_set_header Upgrade $http_upgrade;
-    #    proxy_set_header Connection "upgrade";
-    #    proxy_set_header Host $http_host;
-    #}
+    location /download {
+        proxy_redirect off;
+        proxy_pass http://127.0.0.1:11234;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade \$http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host \$http_host;
+    }
 }
 EOF
     green "$(date +"%Y-%m-%d %H:%M:%S") ==== 检测nginx配置文件"
