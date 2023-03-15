@@ -385,7 +385,7 @@ cat > /usr/local/etc/xray/config.json<<-EOF
                 "wsSettings": {
                 "path": "/download"
                 }
-            },
+            }
         }
     ],
     "outbounds": [
