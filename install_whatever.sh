@@ -450,7 +450,7 @@ id：${v2uuid}
 底层传输：tls
 跳过证书验证：false
 }
-========vmessws(无tls，建议配合Cloudfront使用)========
+========vmessws(无tls，建议配合CloudFront使用)========
 {
 地址：${your_domain}
 端口：80
