@@ -549,6 +549,15 @@ echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
 sysctl -p
 lsmod | grep bbr
 }
+function fix_update(){
+sudo killall apt apt-get
+sudo rm /var/lib/apt/lists/lock
+sudo rm /var/cache/apt/archives/lock
+sudo rm /var/lib/dpkg/lock*
+sudo dpkg --configure -a
+sudo apt update
+green " 修复完成，请重新使用sudo apt upgrade更新!"
+}
 function start_menu(){
     clear
     green " ====================================================="
@@ -564,6 +573,7 @@ function start_menu(){
     green " 5. 修复nginx web files"
     green " 6. Linux新内核开放bbr"
     green " 7. ubuntu/debian系统开放iptables规则"
+    green " 8. ubuntu/debian系统更新lock修复"
     yellow " 0. Exit"
     echo
     read -p "输入数字:" num
@@ -593,6 +603,9 @@ function start_menu(){
     ;;
     7)
     iptables
+    ;;
+    8)
+    fix_update
     ;;
     0)
     exit 1
