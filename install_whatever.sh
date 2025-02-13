@@ -450,7 +450,7 @@ id：${v2uuid}
 底层传输：tls
 跳过证书验证：false
 }
-========vmessws(无tls，建议配合Cloudfront使用)========
+========vmessws(无tls，建议配合CloudFront使用)========
 {
 地址：${your_domain}
 端口：80
@@ -535,6 +535,20 @@ remove_xray(){
 
 }
 
+function iptables(){
+sudo iptables -P INPUT ACCEPT
+sudo iptables -P FORWARD ACCEPT
+sudo iptables -P OUTPUT ACCEPT
+sudo iptables -F
+sudo apt-get purge netfilter-persistent -y
+#sudo reboot
+}
+function enable_bbr(){
+echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
+echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
+sysctl -p
+lsmod | grep bbr
+}
 function start_menu(){
     clear
     green " ====================================================="
@@ -548,6 +562,8 @@ function start_menu(){
     red " 3. 删除 xray"
     green " 4. 查看配置参数"
     green " 5. 修复nginx web files"
+    green " 6. Linux新内核开放bbr"
+    green " 7. ubuntu/debian系统开放iptables规则"
     yellow " 0. Exit"
     echo
     read -p "输入数字:" num
@@ -571,6 +587,12 @@ function start_menu(){
     cd /usr/share/nginx/html/ && rm -rf ./*
     wget https://github.com/snddman/xray-sh/raw/main/fakesite.zip
     unzip -o fakesite.zip
+    ;;
+    6)
+    enable_bbr
+    ;;
+    7)
+    iptables
     ;;
     0)
     exit 1
